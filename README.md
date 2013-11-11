@@ -1,21 +1,21 @@
 WSCoL-Tutorial-SOAPHandler-Client
 =================================
 
+WSCoL Analyzer Tutorial - SOAP Handler, Client Side project
+
+Now we develop a Webservice Client for accessing to the _BookstoreWS_, and attach another handler (but on client side) for use WSCoL as post-condition validator and for manipulate SOAP messages.
+
 ## Table of Content
 
 1. [Setup](#example_handler_client_setup)
-	1.1 [Needed Libraries](example_handler_server_libs)
-	1.2 [Installation](#example_handler_server_install)
+    1. [Needed Libraries](#example_handler_server_libs)
+	2. [Installation](#example_handler_server_install)
 2. [WS Client](#example_handler_client_wsclient)
 3. [Client SOAP Handler](#example_handler_client_handler)
 4. [Client SOAPHandler XML File](#example_handler_client_handler_xml)
 5. [Attach Handler to BookstoreWS](#example_handler_client_handler_attach)
-6. [BookstoreWS Client Project Organization]((#example_handler_client_proj_dir_struct)
-7. [Source] (#example_handler_sources)
-
-WSCoL Analyzer Tutorial - SOAP Handler, Client Side project
-
-Now we develop a Webservice Client for accessing to the _BookstoreWS_, and attach another handler (but on client side) for use WSCoL as post-condition validator and for manipulate SOAP messages.
+6. [BookstoreWS Client Project Organization](#example_handler_client_proj_dir_struct)
+7. [Source](#example_handler_sources)
 
 <a name="example_handler_client_setup"></a>
 ### Setup
