@@ -2,7 +2,6 @@
 package it.polimi.bookstore.ws;
 
 import java.util.List;
-
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -86,13 +85,13 @@ public interface ServerInfoImpl {
     /**
      * 
      * @return
-     *     returns it.polimi.bookstore.ws.FastHashMap
+     *     returns it.polimi.bookstore.ws.HashMapWrapper
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getBooksNumberPerAuthor", targetNamespace = "http://ws.bookstore.polimi.it/", className = "it.polimi.bookstore.ws.GetBooksNumberPerAuthor")
     @ResponseWrapper(localName = "getBooksNumberPerAuthorResponse", targetNamespace = "http://ws.bookstore.polimi.it/", className = "it.polimi.bookstore.ws.GetBooksNumberPerAuthorResponse")
     @Action(input = "http://ws.bookstore.polimi.it/ServerInfoImpl/getBooksNumberPerAuthorRequest", output = "http://ws.bookstore.polimi.it/ServerInfoImpl/getBooksNumberPerAuthorResponse")
-    public FastHashMap getBooksNumberPerAuthor();
+    public HashMapWrapper getBooksNumberPerAuthor();
 
 }

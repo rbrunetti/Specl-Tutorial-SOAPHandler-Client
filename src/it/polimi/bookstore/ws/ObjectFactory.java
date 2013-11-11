@@ -43,19 +43,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FastHashMap }
+     * Create an instance of {@link HashMapWrapper }
      * 
      */
-    public FastHashMap createFastHashMap() {
-        return new FastHashMap();
+    public HashMapWrapper createHashMapWrapper() {
+        return new HashMapWrapper();
     }
 
     /**
-     * Create an instance of {@link FastHashMap.Map }
+     * Create an instance of {@link HashMapWrapper.Map }
      * 
      */
-    public FastHashMap.Map createFastHashMapMap() {
-        return new FastHashMap.Map();
+    public HashMapWrapper.Map createHashMapWrapperMap() {
+        return new HashMapWrapper.Map();
     }
 
     /**
@@ -139,11 +139,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FastHashMap.Map.Entry }
+     * Create an instance of {@link HashMapWrapper.Map.Entry }
      * 
      */
-    public FastHashMap.Map.Entry createFastHashMapMapEntry() {
-        return new FastHashMap.Map.Entry();
+    public HashMapWrapper.Map.Entry createHashMapWrapperMapEntry() {
+        return new HashMapWrapper.Map.Entry();
     }
 
     /**

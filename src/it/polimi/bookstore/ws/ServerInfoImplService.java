@@ -20,7 +20,7 @@ import javax.xml.ws.WebServiceFeature;
  * 
  */
 @WebServiceClient(name = "ServerInfoImplService", targetNamespace = "http://ws.bookstore.polimi.it/", wsdlLocation = "http://localhost:8888/bookstorews/server?wsdl")
-@HandlerChain(file="handler-chain.xml")
+@HandlerChain(file = "handler-chain.xml")
 public class ServerInfoImplService
     extends Service
 {

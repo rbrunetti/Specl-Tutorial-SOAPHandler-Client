@@ -1,17 +1,13 @@
 package it.polimi.bookstore.handler;
 
 import it.polimi.wscol.WSCoLAnalyzer;
-import it.polimi.wscol.Helpers.WSCoLException;
-import it.polimi.wscol.dataobject.DataObject;
+import it.polimi.wscol.helpers.WSCoLException;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;

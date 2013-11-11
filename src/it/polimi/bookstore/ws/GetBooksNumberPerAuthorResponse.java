@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://ws.bookstore.polimi.it/}fastHashMap" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://ws.bookstore.polimi.it/}hashMapWrapper" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class GetBooksNumberPerAuthorResponse {
 
     @XmlElement(name = "return")
-    protected FastHashMap _return;
+    protected HashMapWrapper _return;
 
     /**
      * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link FastHashMap }
+     *     {@link HashMapWrapper }
      *     
      */
-    public FastHashMap getReturn() {
+    public HashMapWrapper getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class GetBooksNumberPerAuthorResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link FastHashMap }
+     *     {@link HashMapWrapper }
      *     
      */
-    public void setReturn(FastHashMap value) {
+    public void setReturn(HashMapWrapper value) {
         this._return = value;
     }
 

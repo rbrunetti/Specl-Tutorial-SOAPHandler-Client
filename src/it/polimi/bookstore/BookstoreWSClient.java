@@ -3,14 +3,13 @@ package it.polimi.bookstore;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.HandlerChain;
 import javax.xml.ws.soap.SOAPFaultException;
 
-import it.polimi.bookstore.ws.FastHashMap;
+import it.polimi.bookstore.ws.HashMapWrapper;
 import it.polimi.bookstore.ws.ServerInfoImpl;
 import it.polimi.bookstore.ws.ServerInfoImplService;
 
-public class TestClient {
+public class BookstoreWSClient {
 	
 	private static ServerInfoImplService service;
 	private static ServerInfoImpl ws;
@@ -20,20 +19,26 @@ public class TestClient {
 		ws = service.getServerInfoImplPort();
 				
 		testGetBooksByIsbnList();
+		testGetBooksNumberPerAuthor();
 		
-		System.err.println("getBooksNumberPerAuthor() - Trendy Author Books Number: " + ws.getBooksNumberPerAuthor().getMap().getEntry().get(0).getValue());
 	}
 	
 	public static void testGetBooksByIsbnList() {
 		List<String> isbns = new ArrayList<>();
 		isbns.add("0553380981");
 		isbns.add("0871131811");
+        isbns.add("012345678"); // a wrong isbn
 		
 		try {
-			System.err.println(ws.getBooksByIsbnList(isbns));
+			System.out.println(ws.getBooksByIsbnList(isbns));
 		} catch (SOAPFaultException e) {
 			System.err.println("testGetBooksByIsbnList(): " + e.getMessage());
 		}
+	}
+	
+	public static void testGetBooksNumberPerAuthor() {
+		HashMapWrapper bnpa = ws.getBooksNumberPerAuthor();
+		System.out.println("getBooksNumberPerAuthor() - Trendy Author Books Number: " + bnpa.getMap().getEntry().get(0).getValue());
 	}
 
 }
