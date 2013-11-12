@@ -34,6 +34,10 @@ Full Zip ([download]())
 #### Installation
 Simply save libraries in a known folder inside your project and import them.<br/>
 In Eclipse IDE right click on the project _Properties_ > _Java Build Path_ > _Libraries_ > _Add JARs..._ and then select the libraries from your project folder.<br/>
+Another way is the following:
+
+![Import Libs](http://rbrunetti.github.io/WSCoL-Analyser/img/soap/00-ImportLibs.png)<br/>
+_Import Libraries_
 
 <a name="example_handler_client_wsclient"></a>
 ### WS Client
@@ -310,7 +314,7 @@ public class ServerInfoImplService
 <a name="example_handler_client_proj_dir_struct"></a>
 ### BookstoreWS Client Project Organization
 Here's the directory structure of the project
-![Client Directory Structure](/img/soap/02-ClientDirStruct.png)
+![Client Directory Structure](http://rbrunetti.github.io/WSCoL-Analyser/img/soap/02-ClientDirStruct.png)
 
 <a name="example_handler_sources"></a>
 ### Project Sources
