@@ -94,4 +94,25 @@ public interface ServerInfoImpl {
     @Action(input = "http://ws.bookstore.polimi.it/ServerInfoImpl/getBooksNumberPerAuthorRequest", output = "http://ws.bookstore.polimi.it/ServerInfoImpl/getBooksNumberPerAuthorResponse")
     public HashMapWrapper getBooksNumberPerAuthor();
 
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByPublisherAndYearRange", targetNamespace = "http://ws.bookstore.polimi.it/", className = "it.polimi.bookstore.ws.GetBooksByPublisherAndYearRange")
+    @ResponseWrapper(localName = "getBooksByPublisherAndYearRangeResponse", targetNamespace = "http://ws.bookstore.polimi.it/", className = "it.polimi.bookstore.ws.GetBooksByPublisherAndYearRangeResponse")
+    @Action(input = "http://ws.bookstore.polimi.it/ServerInfoImpl/getBooksByPublisherAndYearRangeRequest", output = "http://ws.bookstore.polimi.it/ServerInfoImpl/getBooksByPublisherAndYearRangeResponse")
+    public List<String> getBooksByPublisherAndYearRange(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2);
+
 }

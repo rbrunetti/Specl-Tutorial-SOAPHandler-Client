@@ -27,6 +27,7 @@ public class ObjectFactory {
     private final static QName _GetBookByIsbn_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBookByIsbn");
     private final static QName _GetBooksByAuthorResponse_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksByAuthorResponse");
     private final static QName _GetAllBooksTitleResponse_QNAME = new QName("http://ws.bookstore.polimi.it/", "getAllBooksTitleResponse");
+    private final static QName _GetBooksByPublisherAndYearRange_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksByPublisherAndYearRange");
     private final static QName _GetBooksNumberPerAuthorResponse_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksNumberPerAuthorResponse");
     private final static QName _GetBooksByIsbnList_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksByIsbnList");
     private final static QName _GetBooksByIsbnListResponse_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksByIsbnListResponse");
@@ -34,6 +35,7 @@ public class ObjectFactory {
     private final static QName _GetBooksByAuthor_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksByAuthor");
     private final static QName _GetBooksNumberPerAuthor_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksNumberPerAuthor");
     private final static QName _GetBookByIsbnResponse_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBookByIsbnResponse");
+    private final static QName _GetBooksByPublisherAndYearRangeResponse_QNAME = new QName("http://ws.bookstore.polimi.it/", "getBooksByPublisherAndYearRangeResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: it.polimi.bookstore.ws
@@ -75,6 +77,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetBooksByPublisherAndYearRange }
+     * 
+     */
+    public GetBooksByPublisherAndYearRange createGetBooksByPublisherAndYearRange() {
+        return new GetBooksByPublisherAndYearRange();
+    }
+
+    /**
      * Create an instance of {@link GetAllBooksTitleResponse }
      * 
      */
@@ -96,6 +106,14 @@ public class ObjectFactory {
      */
     public GetBookByIsbn createGetBookByIsbn() {
         return new GetBookByIsbn();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByPublisherAndYearRangeResponse }
+     * 
+     */
+    public GetBooksByPublisherAndYearRangeResponse createGetBooksByPublisherAndYearRangeResponse() {
+        return new GetBooksByPublisherAndYearRangeResponse();
     }
 
     /**
@@ -174,6 +192,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPublisherAndYearRange }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.bookstore.polimi.it/", name = "getBooksByPublisherAndYearRange")
+    public JAXBElement<GetBooksByPublisherAndYearRange> createGetBooksByPublisherAndYearRange(GetBooksByPublisherAndYearRange value) {
+        return new JAXBElement<GetBooksByPublisherAndYearRange>(_GetBooksByPublisherAndYearRange_QNAME, GetBooksByPublisherAndYearRange.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksNumberPerAuthorResponse }{@code >}}
      * 
      */
@@ -234,6 +261,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.bookstore.polimi.it/", name = "getBookByIsbnResponse")
     public JAXBElement<GetBookByIsbnResponse> createGetBookByIsbnResponse(GetBookByIsbnResponse value) {
         return new JAXBElement<GetBookByIsbnResponse>(_GetBookByIsbnResponse_QNAME, GetBookByIsbnResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPublisherAndYearRangeResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.bookstore.polimi.it/", name = "getBooksByPublisherAndYearRangeResponse")
+    public JAXBElement<GetBooksByPublisherAndYearRangeResponse> createGetBooksByPublisherAndYearRangeResponse(GetBooksByPublisherAndYearRangeResponse value) {
+        return new JAXBElement<GetBooksByPublisherAndYearRangeResponse>(_GetBooksByPublisherAndYearRangeResponse_QNAME, GetBooksByPublisherAndYearRangeResponse.class, null, value);
     }
 
 }

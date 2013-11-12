@@ -1,44 +1,82 @@
 package it.polimi.bookstore;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.ws.soap.SOAPFaultException;
-
 import it.polimi.bookstore.ws.HashMapWrapper;
 import it.polimi.bookstore.ws.ServerInfoImpl;
 import it.polimi.bookstore.ws.ServerInfoImplService;
+
+import java.util.ArrayList;
+
+import javax.xml.ws.soap.SOAPFaultException;
 
 public class BookstoreWSClient {
 	
 	private static ServerInfoImplService service;
 	private static ServerInfoImpl ws;
 	
+	@SuppressWarnings("serial")
 	public static void main(String[] args) {
 		service = new ServerInfoImplService();
 		ws = service.getServerInfoImplPort();
 				
-		testGetBooksByIsbnList();
+		testGetBooksByAuthor("Larry Niven");
+		testgetBookByIsbn("0871131811");
+		testGetAllBooksTitle();
+		testGetBooksByIsbnList(new ArrayList<String>() {
+			{
+				add("0553380981");
+				add("0871131811");
+				add("012345678");
+			}
+		});
 		testGetBooksNumberPerAuthor();
+		getBooksByPublisherAndYearRange("Spectra", 1900, 2013);
 		
 	}
-	
-	public static void testGetBooksByIsbnList() {
-		List<String> isbns = new ArrayList<>();
-		isbns.add("0553380981");
-		isbns.add("0871131811");
-        isbns.add("012345678"); // a wrong isbn
-		
+
+	private static void testGetBooksByAuthor(String author) {
 		try {
-			System.out.println(ws.getBooksByIsbnList(isbns));
+			System.out.println("testGetBooksByAuthor: " + ws.getBooksByAuthor(author));
 		} catch (SOAPFaultException e) {
-			System.err.println("testGetBooksByIsbnList(): " + e.getMessage());
+			System.err.println("testGetBooksByAuthor: " + e.getMessage());
+		}
+	}
+
+	private static void testgetBookByIsbn(String isbn) {
+		try {
+			System.out.println("testgetBookByIsbn: " + ws.getBookByIsbn(isbn));
+		} catch (SOAPFaultException e) {
+			System.err.println("testgetBookByIsbn: " + e.getMessage());
+		}
+	}
+
+	private static void testGetAllBooksTitle() {
+		try {
+			System.out.println("testGetAllBooksTitle: " + ws.getAllBooksTitle());
+		} catch (SOAPFaultException e) {
+			System.err.println("testGetAllBooksTitle: " + e.getMessage());
+		}
+		
+	}
+
+	public static void testGetBooksByIsbnList(ArrayList<String> isbns) {
+		try {
+			System.out.println("testGetBooksByIsbnList: " + ws.getBooksByIsbnList(isbns));
+		} catch (SOAPFaultException e) {
+			System.err.println("testGetBooksByIsbnList: " + e.getMessage());
 		}
 	}
 	
-	public static void testGetBooksNumberPerAuthor() {
+	private static void testGetBooksNumberPerAuthor() {
 		HashMapWrapper bnpa = ws.getBooksNumberPerAuthor();
 		System.out.println("getBooksNumberPerAuthor() - Trendy Author Books Number: " + bnpa.getMap().getEntry().get(0).getValue());
+	}
+	
+	private static void getBooksByPublisherAndYearRange(String publisher, int startY, int endY) {
+		try {
+			System.out.println("getBooksByPublisherAndYearRange: " + ws.getBooksByPublisherAndYearRange(publisher, startY, endY));
+		} catch (SOAPFaultException e) {
+			System.err.println("getBooksByPublisherAndYearRange: " + e.getMessage());
+		}
 	}
 
 }

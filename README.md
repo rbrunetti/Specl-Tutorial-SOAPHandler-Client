@@ -8,8 +8,8 @@ Now we develop a Webservice Client for accessing to the _BookstoreWS_, and attac
 ## Table of Content
 
 1. [Setup](#example_handler_client_setup)
-    1. [Needed Libraries](#example_handler_server_libs)
-	2. [Installation](#example_handler_server_install)
+    1. [Needed Libraries](#example_handler_client_libs)
+	2. [Installation](#example_handler_client_install)
 2. [WS Client](#example_handler_client_wsclient)
 3. [Client SOAP Handler](#example_handler_client_handler)
 4. [Client SOAPHandler XML File](#example_handler_client_handler_xml)
@@ -21,7 +21,7 @@ Now we develop a Webservice Client for accessing to the _BookstoreWS_, and attac
 ### Setup
 Download the required libraries, import them in your project and start coding.<br/>
 
-<a name="example_handler_server_libs"></a>
+<a name="example_handler_client_libs"></a>
 #### Needed Libraries
 
 * WSCoL-Analyzer.jar ([download]())
@@ -30,7 +30,7 @@ Download the required libraries, import them in your project and start coding.<b
 
 Full Zip ([download]())
 
-<a name="example_handler_server_install"></a>
+<a name="example_handler_client_install"></a>
 #### Installation
 Simply save libraries in a known folder inside your project and import them.<br/>
 In Eclipse IDE right click on the project _Properties_ > _Java Build Path_ > _Libraries_ > _Add JARs..._ and then select the libraries from your project folder.<br/>
@@ -72,48 +72,87 @@ _File: BookstoreWSClient.java_
 ```Java
 package it.polimi.bookstore;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.ws.soap.SOAPFaultException;
-
 import it.polimi.bookstore.ws.HashMapWrapper;
 import it.polimi.bookstore.ws.ServerInfoImpl;
 import it.polimi.bookstore.ws.ServerInfoImplService;
 
+import java.util.ArrayList;
+
+import javax.xml.ws.soap.SOAPFaultException;
+
 public class BookstoreWSClient {
-    
+	
 	private static ServerInfoImplService service;
 	private static ServerInfoImpl ws;
 	
+	@SuppressWarnings("serial")
 	public static void main(String[] args) {
 		service = new ServerInfoImplService();
 		ws = service.getServerInfoImplPort();
 				
-		testGetBooksByIsbnList();
+		testGetBooksByAuthor("Larry Niven");
+		testgetBookByIsbn("0871131811");
+		testGetAllBooksTitle();
+		testGetBooksByIsbnList(new ArrayList<String>() {
+			{
+				add("0553380981");
+				add("0871131811");
+				add("012345678");
+			}
+		});
 		testGetBooksNumberPerAuthor();
+		getBooksByPublisherAndYearRange("Spectra", 1900, 2013);
 		
 	}
-	
-	public static void testGetBooksByIsbnList() {
-		List<String> isbns = new ArrayList<>();
-		isbns.add("0553380981"); // random
-		isbns.add("0871131811"); // "Zodiac"
-        isbns.add("012345678"); // a wrong isbn
-		
+
+	private static void testGetBooksByAuthor(String author) {
 		try {
-			System.out.println(ws.getBooksByIsbnList(isbns));
+			System.out.println("testGetBooksByAuthor: " + ws.getBooksByAuthor(author));
 		} catch (SOAPFaultException e) {
-			System.err.println("testGetBooksByIsbnList(): " + e.getMessage());
+			System.err.println("testGetBooksByAuthor: " + e.getMessage());
+		}
+	}
+
+	private static void testgetBookByIsbn(String isbn) {
+		try {
+			System.out.println("testgetBookByIsbn: " + ws.getBookByIsbn(isbn));
+		} catch (SOAPFaultException e) {
+			System.err.println("testgetBookByIsbn: " + e.getMessage());
+		}
+	}
+
+	private static void testGetAllBooksTitle() {
+		try {
+			System.out.println("testGetAllBooksTitle: " + ws.getAllBooksTitle());
+		} catch (SOAPFaultException e) {
+			System.err.println("testGetAllBooksTitle: " + e.getMessage());
+		}
+		
+	}
+
+	public static void testGetBooksByIsbnList(ArrayList<String> isbns) {
+		try {
+			System.out.println("testGetBooksByIsbnList: " + ws.getBooksByIsbnList(isbns));
+		} catch (SOAPFaultException e) {
+			System.err.println("testGetBooksByIsbnList: " + e.getMessage());
 		}
 	}
 	
-	public static void testGetBooksNumberPerAuthor() {
+	private static void testGetBooksNumberPerAuthor() {
 		HashMapWrapper bnpa = ws.getBooksNumberPerAuthor();
 		System.out.println("getBooksNumberPerAuthor() - Trendy Author Books Number: " + bnpa.getMap().getEntry().get(0).getValue());
 	}
+	
+	private static void getBooksByPublisherAndYearRange(String publisher, int startY, int endY) {
+		try {
+			System.out.println("getBooksByPublisherAndYearRange: " + ws.getBooksByPublisherAndYearRange(publisher, startY, endY));
+		} catch (SOAPFaultException e) {
+			System.err.println("getBooksByPublisherAndYearRange: " + e.getMessage());
+		}
+	}
 
 }
+
 ```
 
 <a name="example_handler_client_handler"></a>
@@ -144,7 +183,7 @@ import javax.xml.ws.soap.SOAPFaultException;
 import org.w3c.dom.Node;
 
 public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
-    
+	
 	@Override
 	public boolean handleMessage(SOAPMessageContext context) {
 
@@ -186,7 +225,7 @@ public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
 							}
 						}
 					} catch (WSCoLException e) {
-						e.printStackTrace();
+						generateSOAPErrMessage(soapMsg, "Errors while check post-conditions");
 					}
 				
 				}

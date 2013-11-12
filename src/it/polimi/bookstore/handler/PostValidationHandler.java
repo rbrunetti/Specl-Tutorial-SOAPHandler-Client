@@ -61,7 +61,7 @@ public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
 							}
 						}
 					} catch (WSCoLException e) {
-						e.printStackTrace();
+						generateSOAPErrMessage(soapMsg, "Errors while check post-conditions");
 					}
 				
 				}
