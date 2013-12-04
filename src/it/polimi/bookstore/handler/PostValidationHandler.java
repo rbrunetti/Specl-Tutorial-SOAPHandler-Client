@@ -1,7 +1,7 @@
 package it.polimi.bookstore.handler;
 
-import it.polimi.wscol.WSCoLAnalyzer;
-import it.polimi.wscol.helpers.WSCoLException;
+import it.polimi.specl.SpeclAnalyzer;
+import it.polimi.specl.helpers.SpeclException;
 
 import java.io.IOException;
 import java.util.Set;
@@ -29,7 +29,7 @@ public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
 
 		if (!isRequest) {
 
-			WSCoLAnalyzer analyzer = new WSCoLAnalyzer();
+			SpeclAnalyzer analyzer = new SpeclAnalyzer();
 			analyzer.shutdownLogger();
 
 			try {
@@ -60,7 +60,7 @@ public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
 								i -= 1;
 							}
 						}
-					} catch (WSCoLException e) {
+					} catch (SpeclException e) {
 						generateSOAPErrMessage(soapMsg, "Errors while check post-conditions");
 					}
 				

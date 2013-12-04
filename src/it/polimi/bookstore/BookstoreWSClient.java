@@ -25,11 +25,11 @@ public class BookstoreWSClient {
 			{
 				add("0553380981");
 				add("0871131811");
-				add("012345678");
+				add("012345678"); // note, this is wrong
 			}
 		});
 		testGetBooksNumberPerAuthor();
-		getBooksByPublisherAndYearRange("Spectra", 1900, 2013);
+		getBooksByPublisherAndYearRange("Spectra", 1990, 2013);
 		
 	}
 

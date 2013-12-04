@@ -1,9 +1,9 @@
-WSCoL-Tutorial-SOAPHandler-Client
+Specl-Tutorial-SOAPHandler-Client
 =================================
 
-WSCoL Analyzer Tutorial - SOAP Handler, Client Side project
+Specl Analyzer Tutorial - SOAP Handler, Client Side project
 
-Now we develop a Webservice Client for accessing to the _BookstoreWS_, and attach another handler (but on client side) for use WSCoL as post-condition validator and for manipulate SOAP messages.
+Now we develop a Webservice Client for accessing to the _BookstoreWS_, and attach another handler (but on client side) for use Specl as post-condition validator and for manipulate SOAP messages.
 
 ## Table of Content
 
@@ -24,9 +24,9 @@ Download the required libraries, import them in your project and start coding.<b
 <a name="example_handler_client_libs"></a>
 #### Needed Libraries
 
-* WSCoL-Analyzer.jar ([download]())
-* WSCoL.jar (required by _WSCoL-Analyzer.jar_) ([download]())
-* json-simple-1.1.1.jar (required by _WSCoL-Analyzer.jar_) ([download]())
+* Specl-Analyzer.jar ([download]())
+* Specl.jar (required by _Specl-Analyzer.jar_) ([download]())
+* json-simple-1.1.1.jar (required by _Specl-Analyzer.jar_) ([download]())
 
 Full Zip ([download]())
 
@@ -36,7 +36,7 @@ Simply save libraries in a known folder inside your project and import them.<br/
 In Eclipse IDE right click on the project _Properties_ > _Java Build Path_ > _Libraries_ > _Add JARs..._ and then select the libraries from your project folder.<br/>
 Another way is the following:
 
-![Import Libs](http://rbrunetti.github.io/WSCoL-Analyser/img/soap/00-ImportLibs.png)<br/>
+![Import Libs](http://rbrunetti.github.io/Specl-Analyser/img/soap/00-ImportLibs.png)<br/>
 _Import Libraries_
 
 <a name="example_handler_client_wsclient"></a>
@@ -162,14 +162,14 @@ public class BookstoreWSClient {
 <a name="example_handler_client_handler"></a>
 ### Client SOAP Handler
 Create a SOAP Handler on client side for extract informations from the response message and manipulate it.<br/>
-It intercepts the `getBooksNumberPerAuthorResponse` (that returns a Map with entries where keys are the authors name and values the number of book in the store written by that author) than with WSCoL we find the author with the maximum number of book and we modify the SOAP message and remove all the other entries.
+It intercepts the `getBooksNumberPerAuthorResponse` (that returns a Map with entries where keys are the authors name and values the number of book in the store written by that author) than with Specl we find the author with the maximum number of book and we modify the SOAP message and remove all the other entries.
 
 _File: PostValidationHandler.java_
 ```Java
 package it.polimi.bookstore.handler;
 
-import it.polimi.wscol.WSCoLAnalyzer;
-import it.polimi.wscol.helpers.WSCoLException;
+import it.polimi.Specl.SpeclAnalyzer;
+import it.polimi.Specl.helpers.SpeclException;
 
 import java.io.IOException;
 import java.util.Set;
@@ -197,7 +197,7 @@ public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
 
 		if (!isRequest) {
 
-			WSCoLAnalyzer analyzer = new WSCoLAnalyzer();
+			SpeclAnalyzer analyzer = new SpeclAnalyzer();
 			analyzer.shutdownLogger();
 
 			try {
@@ -228,7 +228,7 @@ public class PostValidationHandler implements SOAPHandler<SOAPMessageContext> {
 								i -= 1;
 							}
 						}
-					} catch (WSCoLException e) {
+					} catch (SpeclException e) {
 						generateSOAPErrMessage(soapMsg, "Errors while check post-conditions");
 					}
 				
@@ -314,9 +314,9 @@ public class ServerInfoImplService
 <a name="example_handler_client_proj_dir_struct"></a>
 ### BookstoreWS Client Project Organization
 Here's the directory structure of the project
-![Client Directory Structure](http://rbrunetti.github.io/WSCoL-Analyser/img/soap/02-ClientDirStruct.png)
+![Client Directory Structure](http://rbrunetti.github.io/Specl-Analyser/img/soap/02-ClientDirStruct.png)
 
 <a name="example_handler_sources"></a>
 ### Project Sources
-Project sources are available on GitHub at [WSCoL-Tutorial-SOAPHandler-Client](https://github.com/rbrunetti/WSCoL-Tutorial-SOAPHandler-Client).<br/>
-Server project (on which this repository is based) is at [WSCoL-Tutorial-SOAPHandlerWS](https://github.com/rbrunetti/WSCoL-Tutorial-SOAPHandlerWS).
+Project sources are available on GitHub at [Specl-Tutorial-SOAPHandler-Client](https://github.com/rbrunetti/Specl-Tutorial-SOAPHandler-Client).<br/>
+Server project (on which this repository is based) is at [Specl-Tutorial-SOAPHandlerWS](https://github.com/rbrunetti/Specl-Tutorial-SOAPHandlerWS).
